@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class ApiServiceService {
   level: string = 'medium';
+  get: any;
 
   constructor(private httpClient: HttpClient) {}
 

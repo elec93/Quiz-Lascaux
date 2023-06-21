@@ -8,17 +8,34 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./quiz-select.component.css'],
 })
 export class QuizSelectComponent {
-  /* categories: string =  */
-  constructor(private dataApi: ApiServiceService) {}
+  apiData: any;
+  constructor(private http: HttpClient) {}
 
-  getData(): void {
+  getCategory(): void {
+    const urlCategories = `https://opentdb.com/api_category.php`;
+    this.http.get<any>(urlCategories).subscribe(
+      (data) => {
+        this.apiData = data; // Assegna i dati ottenuti dall'API alla variabile apiData
+      },
+      (error) => {
+        console.error('Failed to get data:', error);
+      }
+    );
+    /* console.log(this.apiData); */
+    console.log(this.apiData.trivia_categories[0].name);
+    let categories = this.apiData.trivia_categories[0].name;
+  }
+}
+/* getData() {
     this.dataApi.getData().subscribe((data) => {
       console.log(data);
-      console.log(data.result[0].category);
+      this.apiData = data;
+      console.log(this.apiData.results[1].category);
     });
   }
 
   /*   get getCategory(): HttpClient {
     return this.contactForm.get('details')?.get('languageSkills') as FormArray; // contenuto lo identifico come FormArray
-  } */
+  }
 }
+ */

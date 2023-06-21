@@ -1,22 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import {
-  FormControl,
-  FormGroupDirective,
-  FormsModule,
-  NgForm,
-} from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-
+import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, MatSelectModule, MatFormFieldModule, FormsModule],
-  exports: [MatSelectModule, MatFormFieldModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+  ],
+  exports: [MatButtonModule, MatSelectModule],
 })
 export class MaterialModule {}

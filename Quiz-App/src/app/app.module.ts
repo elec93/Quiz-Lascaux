@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { QuizSelectComponent } from './quiz-select/quiz-select.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, QuizSelectComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
