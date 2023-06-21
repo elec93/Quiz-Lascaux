@@ -12,7 +12,7 @@ export class QuizSelectComponent {
   constructor(private http: HttpClient) {}
 
   getCategory(): void {
-    const urlCategories = `https://opentdb.com/api_category.php`;
+    const urlCategories = `https://opentdb.com/api.php?amount=5&category=9&difficulty=easy`;
     this.http.get<any>(urlCategories).subscribe(
       (data) => {
         this.apiData = data; // Assegna i dati ottenuti dall'API alla variabile apiData
@@ -21,7 +21,7 @@ export class QuizSelectComponent {
         console.error('Failed to get data:', error);
       }
     );
-    /* console.log(this.apiData); */
+    console.log(this.apiData);
     console.log(this.apiData.trivia_categories[0].name);
     let categories = this.apiData.trivia_categories[0].name;
   }
