@@ -16,12 +16,9 @@
     <mat-form-field>
       <mat-label>Category</mat-label>
       <mat-select>
-        <mat-option
-          *ngFor="let category of difficulties"
-          [value]="category.name"
-        >
-          {{ category.name }}</mat-option
-        >
+        <mat-option [value]="easy">Easy</mat-option>
+        <mat-option [value]="">Medium</mat-option>
+        <mat-option [value]="">Hard</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
