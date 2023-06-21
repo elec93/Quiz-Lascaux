@@ -1,61 +1,37 @@
 <h1>AA</h1>
-<!-- <select *ngFor="let category of categories; index as i" name="Category" id="">
-  <option value="">{{}}</option>
-</select>
-<select name="Level" id="">
-  <option value="">{{}}</option>
-</select> -->
-
-<!--
-<div *ngFor="let item of data">
-  <p>{{ item.category }}</p>
-</div> -->
-<!-- <p>{{ apiData?.category }}</p> -->
-<!-- <div>{{ apiData?.results[0].category }}</div>
- -->
-<!-- <div *ngFor="let category of apiData?.results">
-  {{ category.category }}
-</div> -->
-
-<!-- <div *ngFor="let category of apiData?.results">
-  {{ category.category }}
-</div> -->
 
 <div class="form-container">
   <div class="form-section">
     <mat-form-field>
       <mat-label>Category</mat-label>
       <mat-select>
-        <mat-option value="1">Option 1</mat-option>
-        <mat-option value="2">Option 2</mat-option>
-        <mat-option value="3">Option 3</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="form-section">
-    <mat-form-field>
-      <mat-label>Level</mat-label>
-      <mat-select>
-        <mat-option value="1">Option 1</mat-option>
-        <mat-option value="2">Option 2</mat-option>
-        <mat-option value="3">Option 3</mat-option>
+        <mat-option *ngFor="let category of categories" [value]="category.name">
+          {{ category.name }}</mat-option
+        >
       </mat-select>
     </mat-form-field>
   </div>
 
   <div class="form-section">
-    <button mat-raised-button color="primary" (click)="getCategory()">
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <mat-select>
+        <mat-option
+          *ngFor="let category of difficulties"
+          [value]="category.name"
+        >
+          {{ category.name }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="form-section">
+    <button mat-raised-button color="primary" (click)="getCategories()">
       Start
     </button>
   </div>
 </div>
-
-<!-- <div>{{ apiData?.results[2].category }}</div>
- -->
-<!-- <div *ngFor="let category of apiData?.results">
-  {{ category.category }}
-</div>
- -->
 
 <select *ngFor="let category of apiData; index as i" name="Category" id="">
   <option value="">{{ category.trivia_categories[0].name }}</option>

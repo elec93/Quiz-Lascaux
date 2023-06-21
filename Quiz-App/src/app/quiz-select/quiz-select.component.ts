@@ -9,19 +9,23 @@ import { HttpClient } from '@angular/common/http';
 })
 export class QuizSelectComponent {
   apiData: any;
+  categories: any[] = []; // Array to store the categories
+  difficulties: any[] = []; // Array to store the categories
+
   constructor(private http: HttpClient) {}
 
   getCategory(): void {
-    const urlCategories = `https://opentdb.com/api.php?amount=5&category=9&difficulty=easy`;
+    const urlCategories = `https://opentdb.com/api_category.php`;
     this.http.get<any>(urlCategories).subscribe(
       (data) => {
         this.apiData = data; // Assegna i dati ottenuti dall'API alla variabile apiData
+        this.categories = this.apiData.trivia_categories; // Assign categories to the array
       },
       (error) => {
         console.error('Failed to get data:', error);
       }
     );
-    console.log(this.apiData);
+    /* console.log(this.apiData); */
     console.log(this.apiData.trivia_categories[0].name);
     let categories = this.apiData.trivia_categories[0].name;
   }
@@ -34,8 +38,16 @@ export class QuizSelectComponent {
     });
   }
 
-  /*   get getCategory(): HttpClient {
-    return this.contactForm.get('details')?.get('languageSkills') as FormArray; // contenuto lo identifico come FormArray
+  getDifficulties(): void {
+    const urlCategories = `https://opentdb.com/api_difficulty.php`;
+    this.http.get<any>(urlCategories).subscribe(
+      (data) => {
+        this.apiData = data; // Assegna i dati ottenuti dall'API alla variabile apiData
+        this.difficulties = this.apiData.trivia_difficulties; // Assign categories to the array
+      },
+      (error) => {
+        console.error('Failed to get data:', error);
+      }
+    );
   }
 }
- */
