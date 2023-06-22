@@ -15,5 +15,6 @@ export class ApiServiceService {
     return this.httpClient.get(url);
   } */
 
-  IdCategoryDifficulty!: string;
+  idCategoryService!: string;
+  difficultyService!: string;
 }

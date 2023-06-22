@@ -10,13 +10,16 @@ import { HttpClient } from '@angular/common/http';
 export class QuizSelectComponent {
   apiData: any;
   categories: any[] = []; // Array to store the categories
-  difficulties: any[] = []; // Array to store the categories
+
+  // valori di difficulty e IdCategoy che verranno sappati nel componente question con il service (sendDatas())
   selectedDifficulty!: string;
-  idCategory!: number;
+  idCategory!: string;
+
   constructor(
     private http: HttpClient,
     private apiService: ApiServiceService
   ) {}
+
   ngOnInit() {
     this.getCategories();
   }
@@ -41,7 +44,8 @@ export class QuizSelectComponent {
   }
 
   sendDatas() {
-    this.apiService.IdCategoryDifficulty = this.selectedDifficulty;
+    this.apiService.difficultyService = this.selectedDifficulty;
+    this.apiService.idCategoryService = this.idCategory;
   }
 }
 /* getData() {

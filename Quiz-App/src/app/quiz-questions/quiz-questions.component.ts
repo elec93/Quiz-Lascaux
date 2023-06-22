@@ -9,12 +9,14 @@ import { ApiServiceService } from '../services/api-service.service';
 export class QuizQuestionsComponent {
   constructor(public apiService: ApiServiceService) {}
 
-  datoId: string = this.apiService.IdCategoryDifficulty;
+  datoId: string = this.apiService.idCategoryService;
+  datoDifficulty: string = this.apiService.difficultyService;
   ngOnInit() {
     this.stampa();
   }
 
   stampa(): void {
-    console.log('Dato servie:' + this.datoId);
+    console.log('Dato service Id:' + this.datoId);
+    console.log('Dato servie Diff:' + this.datoDifficulty);
   }
 }
