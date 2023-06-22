@@ -7,9 +7,10 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { QuizSelectComponent } from './quiz-select/quiz-select.component';
+import { QuizQuestionsComponent } from './quiz-questions/quiz-questions.component';
 
 @NgModule({
-  declarations: [AppComponent, QuizSelectComponent],
+  declarations: [AppComponent, QuizSelectComponent, QuizQuestionsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

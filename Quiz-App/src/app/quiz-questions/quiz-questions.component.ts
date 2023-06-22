@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { ApiServiceService } from '../services/api-service.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -8,7 +8,11 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./quiz-questions.component.css'],
 })
 export class QuizQuestionsComponent {
-  constructor(public apiService: ApiServiceService, private http: HttpClient) {}
+  constructor(
+    public apiService: ApiServiceService,
+    private http: HttpClient,
+    private elementRef: ElementRef
+  ) {}
   /* urlFinale: string = this.apiService.getUrlFinale(); */
   data: any;
 
@@ -35,28 +39,17 @@ export class QuizQuestionsComponent {
       this.data = data;
       console.log(data);
 
-      this.shuffleListItems();
+      /*  this.shuffleListItems(); */
 
       // Assegna i dati ottenuti dall'API alla variabile data
       // Puoi eseguire ulteriori operazioni con i dati qui, se necessario
     });
   }
 
-  shuffleArray(array: any[]) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+  ngAfterViewInit() {
+    const ul = this.elementRef.nativeElement.querySelector('ul');
+    for (let i = ul.children.length; i >= 0; i--) {
+      ul.appendChild(ul.children[(Math.random() * i) | 0]);
     }
-    return array;
-  }
-
-  shuffleListItems() {
-    const answers = [
-      this.data.results[0].correct_answer,
-      this.data.results[0].incorrect_answers[0],
-      this.data.results[0].incorrect_answers[1],
-      this.data.results[0].incorrect_answers[2],
-    ];
-    this.data.results[0].answers = this.shuffleArray(answers);
   }
 }

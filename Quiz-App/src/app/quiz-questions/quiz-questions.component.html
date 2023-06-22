@@ -16,10 +16,26 @@
   <h2>Quiz Question</h2>
   <p>Question: {{ data.results[0].question }}</p>
 
-  <ul>
-    <li>Correct Answer: {{ data.results[0].correct_answer }}</li>
-    <li>Correct Answer: {{ data.results[0].incorrect_answers[0] }}</li>
-    <li>Correct Answer: {{ data.results[0].incorrect_answers[1] }}</li>
-    <li>Correct Answer: {{ data.results[0].incorrect_answers[2] }}</li>
+  <ul class="question-ul">
+    <li>
+      <button mat-stroked-button color="primary">
+        Correct Answer: {{ data.results[0].correct_answer }}
+      </button>
+    </li>
+    <li>
+      <button mat-stroked-button color="primary">
+        inc 1: {{ data.results[0].incorrect_answers[0] }}
+      </button>
+    </li>
+    <li>
+      <button mat-stroked-button color="primary">
+        inc 2: {{ data.results[0].incorrect_answers[1] }}
+      </button>
+    </li>
+    <li>
+      <button mat-stroked-button color="primary">
+        inc 3: {{ data.results[0].incorrect_answers[2] }}
+      </button>
+    </li>
   </ul>
 </div>

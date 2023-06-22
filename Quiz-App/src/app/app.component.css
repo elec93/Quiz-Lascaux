@@ -1,0 +1,8 @@
+mat-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+mat-toolbar span {
+  color: rgb(116, 14, 211);
+}
