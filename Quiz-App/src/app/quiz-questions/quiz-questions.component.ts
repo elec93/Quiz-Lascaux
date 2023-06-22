@@ -1,55 +1,75 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { ApiServiceService } from '../services/api-service.service';
 import { HttpClient } from '@angular/common/http';
+import { Answer, Trivia } from '../model/trivia';
 
 @Component({
   selector: 'app-quiz-questions',
   templateUrl: './quiz-questions.component.html',
   styleUrls: ['./quiz-questions.component.css'],
 })
-export class QuizQuestionsComponent {
+export class QuizQuestionsComponent implements OnInit {
   constructor(
     public apiService: ApiServiceService,
     private http: HttpClient,
     private elementRef: ElementRef
   ) {}
-  /* urlFinale: string = this.apiService.getUrlFinale(); */
-  data: any;
 
-  /*  datoId: string = this.apiService.idCategoryService;
-  datoDifficulty: string = this.apiService.difficultyService; */
-  ngOnInit() {
+  trivias: any;
+
+  ngOnInit(): void {
     this.getData();
     this.stampa();
+    this.random();
   }
-
-  stampa(): void {
-    console.log(this.apiService.getUrlFinale());
-
-    /*  console.log('Dato service Id:' + this.datoId);
-    console.log('Dato servie Diff:' + this.datoDifficulty); */
-  }
-
-  getData(): void {
-    // const url = 'https://opentdb.com/api.php?amount=1&type=multiple';
-    /*   const url =
-      'https://opentdb.com/api.php?amount=5&category=9&difficulty=easy&type=multiple';
- */
-    this.http.get<any>(this.apiService.getUrlFinale()).subscribe((data) => {
-      this.data = data;
-      console.log(data);
-
-      /*  this.shuffleListItems(); */
-
-      // Assegna i dati ottenuti dall'API alla variabile data
-      // Puoi eseguire ulteriori operazioni con i dati qui, se necessario
-    });
-  }
-
-  ngAfterViewInit() {
+  random(): void {
     const ul = this.elementRef.nativeElement.querySelector('ul');
     for (let i = ul.children.length; i >= 0; i--) {
       ul.appendChild(ul.children[(Math.random() * i) | 0]);
     }
+  }
+
+  stampa(): void {
+    /* console.log(this.apiService.getUrlFinale()); */
+  }
+
+  getData(): void {
+    this.http.get<any>(this.apiService.getUrlFinale()).subscribe((data) => {
+      this.trivias = data.results.map((element: any) => {
+        const t = new Trivia();
+        t.category = element.category;
+        t.difficulty = element.difficulty;
+        t.question = element.question;
+        const answers: any = [];
+
+        const answer1 = new Answer();
+        answer1.text = element.correct_answer;
+        answer1.correct = true;
+        answer1.selected = false;
+        answers.push(answer1);
+
+        element.incorrect_answers.forEach((x: any) => {
+          const answer2 = new Answer();
+          answer2.text = x;
+          answer2.correct = false;
+          answer2.selected = false;
+          answers.push(answer2);
+        });
+
+        t.answers = answers;
+        // answers random
+        return t;
+      });
+      console.log(this.trivias);
+    });
+  }
+
+  selectedAnswer(answer: any, trivia: any) {
+    this.trivias
+      .filter((t: any) => t.question === trivia.question)
+      .forEach((t: any) => {
+        const ans = t.answers.filter((a: any) => a.text === answer.text)[0];
+        ans.selected = true;
+      });
   }
 }

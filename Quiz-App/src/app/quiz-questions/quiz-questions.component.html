@@ -1,40 +1,15 @@
-<p>quiz-questions works!</p>
-<!-- <p>Id: {{ datoId }}</p>
-<p>Difficulty: {{ datoDifficulty }}</p> -->
-<!-- <div>
-  <h2>Quiz Question</h2>
-  <p>Question: {{ data.results[0].question }}</p>
-  <p>Correct Answer: {{ data.results[0].correct_answer }}</p>
-  <p>Incorrect Answers:</p>
-  <ul>
-    <li *ngFor="let answer of data.results[0].incorrect_answers; index as i">
-      {{ answer.results[i].incorrect_answer }}
-    </li>
-  </ul>
-</div> -->
-<div>
-  <h2>Quiz Question</h2>
-  <p>Question: {{ data.results[0].question }}</p>
+<div class="questions-container" *ngFor="let trivia of trivias">
+  <h3>Question: {{ trivia.question }}</h3>
 
   <ul class="question-ul">
-    <li>
-      <button mat-stroked-button color="primary">
-        Correct Answer: {{ data.results[0].correct_answer }}
-      </button>
-    </li>
-    <li>
-      <button mat-stroked-button color="primary">
-        inc 1: {{ data.results[0].incorrect_answers[0] }}
-      </button>
-    </li>
-    <li>
-      <button mat-stroked-button color="primary">
-        inc 2: {{ data.results[0].incorrect_answers[1] }}
-      </button>
-    </li>
-    <li>
-      <button mat-stroked-button color="primary">
-        inc 3: {{ data.results[0].incorrect_answers[2] }}
+    <li *ngFor="let answer of trivia.answers">
+      <button
+        mat-stroked-button
+        color="primary"
+        [class.active]="answer.selected"
+        (click)="selectedAnswer(answer, trivia)"
+      >
+        {{ answer.text }} - {{ answer.correct }}
       </button>
     </li>
   </ul>
