@@ -17,4 +17,14 @@ export class ApiServiceService {
 
   idCategoryService!: string;
   difficultyService!: string;
+
+  getUrlFinale() {
+    return (
+      'https://opentdb.com/api.php?amount=5&category=' +
+      this.idCategoryService +
+      '&difficulty=' +
+      this.difficultyService +
+      '&type=multiple'
+    );
+  }
 }

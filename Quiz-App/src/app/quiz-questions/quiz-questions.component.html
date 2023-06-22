@@ -1,3 +1,25 @@
 <p>quiz-questions works!</p>
-<p>Id: {{ datoId }}</p>
-<p>Difficulty: {{ datoDifficulty }}</p>
+<!-- <p>Id: {{ datoId }}</p>
+<p>Difficulty: {{ datoDifficulty }}</p> -->
+<!-- <div>
+  <h2>Quiz Question</h2>
+  <p>Question: {{ data.results[0].question }}</p>
+  <p>Correct Answer: {{ data.results[0].correct_answer }}</p>
+  <p>Incorrect Answers:</p>
+  <ul>
+    <li *ngFor="let answer of data.results[0].incorrect_answers; index as i">
+      {{ answer.results[i].incorrect_answer }}
+    </li>
+  </ul>
+</div> -->
+<div>
+  <h2>Quiz Question</h2>
+  <p>Question: {{ data.results[0].question }}</p>
+
+  <ul>
+    <li>Correct Answer: {{ data.results[0].correct_answer }}</li>
+    <li>Correct Answer: {{ data.results[0].incorrect_answers[0] }}</li>
+    <li>Correct Answer: {{ data.results[0].incorrect_answers[1] }}</li>
+    <li>Correct Answer: {{ data.results[0].incorrect_answers[2] }}</li>
+  </ul>
+</div>
