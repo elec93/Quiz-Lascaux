@@ -11,10 +11,17 @@ export class QuizSelectComponent {
   apiData: any;
   categories: any[] = []; // Array to store the categories
   difficulties: any[] = []; // Array to store the categories
+  selectedDifficulty!: string;
+  idCategory!: number;
+  constructor(
+    private http: HttpClient,
+    private apiService: ApiServiceService
+  ) {}
+  ngOnInit() {
+    this.getCategories();
+  }
 
-  constructor(private http: HttpClient) {}
-
-  getCategory(): void {
+  getCategories(): void {
     const urlCategories = `https://opentdb.com/api_category.php`;
     this.http.get<any>(urlCategories).subscribe(
       (data) => {
@@ -26,8 +33,15 @@ export class QuizSelectComponent {
       }
     );
     /* console.log(this.apiData); */
-    console.log(this.apiData.trivia_categories[0].name);
-    let categories = this.apiData.trivia_categories[0].name;
+    /*     console.log(this.apiData.trivia_categories[0].name);
+    let categories = this.apiData.trivia_categories[0].name; */
+    console.log(this.selectedDifficulty);
+    console.log(this.idCategory);
+    this.sendDatas();
+  }
+
+  sendDatas() {
+    this.apiService.IdCategoryDifficulty = this.selectedDifficulty;
   }
 }
 /* getData() {
@@ -49,5 +63,4 @@ export class QuizSelectComponent {
         console.error('Failed to get data:', error);
       }
     );
-  }
-}
+  }*/

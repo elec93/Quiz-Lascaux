@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ApiServiceService {
-  level: string = 'medium';
+  /*   level: string = 'medium';
   get: any;
 
   constructor(private httpClient: HttpClient) {}
@@ -13,5 +13,7 @@ export class ApiServiceService {
   getData() {
     let url = `https://opentdb.com/api.php?amount=5&category=9&difficulty=${this.level}&type=multiple`;
     return this.httpClient.get(url);
-  }
+  } */
+
+  IdCategoryDifficulty!: string;
 }

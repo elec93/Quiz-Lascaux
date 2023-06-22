@@ -4,8 +4,8 @@
   <div class="form-section">
     <mat-form-field>
       <mat-label>Category</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let category of categories" [value]="category.name">
+      <mat-select [(ngModel)]="idCategory">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
           {{ category.name }}</mat-option
         >
       </mat-select>
@@ -14,17 +14,22 @@
 
   <div class="form-section">
     <mat-form-field>
-      <mat-label>Category</mat-label>
-      <mat-select>
-        <mat-option [value]="easy">Easy</mat-option>
-        <mat-option [value]="">Medium</mat-option>
-        <mat-option [value]="">Hard</mat-option>
+      <mat-label>Difficolty</mat-label>
+      <mat-select [(ngModel)]="selectedDifficulty">
+        <mat-option value="easy">Easy</mat-option>
+        <mat-option value="medium">Medium</mat-option>
+        <mat-option value="hard">Hard</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
 
   <div class="form-section">
-    <button mat-raised-button color="primary" (click)="getCategories()">
+    <button
+      mat-raised-button
+      routerLink="/questions"
+      color="primary"
+      (click)="getCategories()"
+    >
       Start
     </button>
   </div>
