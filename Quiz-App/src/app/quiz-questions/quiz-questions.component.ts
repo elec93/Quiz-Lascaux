@@ -28,21 +28,22 @@ export class QuizQuestionsComponent implements OnInit {
         // t = oggetto vuoto (Trivia class)
         const t = new Trivia();
 
-        // aggiungo elementi a oggetto vuoto
+        // Per ogni elemento della lista delle domande, viene creato un nuovo oggetto Trivia
         t.category = element.category;
         t.difficulty = element.difficulty;
         t.question = element.question;
         // array per risposte
         const answers: any = [];
 
-        // correct
+        // Creazione dell'oggetto Answer per la risposta corretta
         const answer1 = new Answer();
         answer1.text = element.correct_answer;
         answer1.correct = true;
         answer1.selected = false;
         answers.push(answer1);
 
-        // incorrect array ( 3 risposte sbagliate)
+        // Per ogni risposta errata, viene creato un nuovo oggetto Answer,
+        // false per indicare che è una risposta errata o che non è stata selezionata.
         element.incorrect_answers.forEach((x: any) => {
           const answer2 = new Answer();
           answer2.text = x;
@@ -109,6 +110,7 @@ export class QuizQuestionsComponent implements OnInit {
     });
   }
 
+  // sotto questions, bottoni answers random
   shuffleAnswers(trivia: any): void {
     trivia.answers = trivia.answers.sort(() => Math.random() - 0.5);
   }

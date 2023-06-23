@@ -51,6 +51,7 @@ h3 {
   font-weight: 500;
   font-size: 16px;
   margin-bottom: -5px;
+  color: rgb(33, 31, 34);
 }
 
 li button:hover {
@@ -100,5 +101,8 @@ button.green {
     font-size: 12px;
     margin-inline: 5px;
     word-wrap: normal;
+  }
+  li button {
+    margin-bottom: 4px;
   }
 }
