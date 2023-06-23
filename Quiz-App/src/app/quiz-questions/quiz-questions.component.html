@@ -22,6 +22,9 @@
   <button mat-raised-button color="primary" (click)="calculateResult()">
     Submit
   </button>
+  <button mat-raised-button color="primary" routerLink="/quiz-select">
+    Retry
+  </button>
 </div>
 <div class="result" *ngIf="showResult">
   Number of Correct Answers: {{ correctAnswers }}
