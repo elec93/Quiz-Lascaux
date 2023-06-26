@@ -13,7 +13,7 @@
 
     <div class="form-section">
       <mat-form-field>
-        <mat-label>Difficolty</mat-label>
+        <mat-label>Difficulty</mat-label>
         <mat-select [(ngModel)]="selectedDifficulty">
           <mat-option value="easy">Easy</mat-option>
           <mat-option value="medium">Medium</mat-option>
@@ -23,11 +23,13 @@
     </div>
 
     <div class="form-section">
+      <!-- disabled su button aggiunto dopo presenzatione avendo notato che mancava -->
       <button
         mat-raised-button
         routerLink="/questions"
         color="primary"
         (click)="getCategories()"
+        [disabled]="!(idCategory && selectedDifficulty)"
       >
         Start
       </button>
