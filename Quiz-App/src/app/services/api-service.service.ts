@@ -5,13 +5,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ApiServiceService {
-  level: string = 'medium';
-  get: any;
+  idCategoryService!: string;
+  difficultyService!: string;
 
-  constructor(private httpClient: HttpClient) {}
-
-  getData() {
-    let url = `https://opentdb.com/api.php?amount=5&category=9&difficulty=${this.level}&type=multiple`;
-    return this.httpClient.get(url);
+  getUrlFinale() {
+    return (
+      'https://opentdb.com/api.php?amount=5&category=' +
+      this.idCategoryService +
+      '&difficulty=' +
+      this.difficultyService +
+      '&type=multiple'
+    );
   }
 }

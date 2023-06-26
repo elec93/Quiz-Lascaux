@@ -1,35 +1,42 @@
-<h1>AA</h1>
+<div class="body-container">
+  <div class="form-container">
+    <div class="form-section">
+      <mat-form-field>
+        <mat-label>Category</mat-label>
+        <mat-select [(ngModel)]="idCategory">
+          <mat-option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
 
-<div class="form-container">
-  <div class="form-section">
-    <mat-form-field>
-      <mat-label>Category</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let category of categories" [value]="category.name">
-          {{ category.name }}</mat-option
-        >
-      </mat-select>
-    </mat-form-field>
+    <div class="form-section">
+      <mat-form-field>
+        <mat-label>Difficulty</mat-label>
+        <mat-select [(ngModel)]="selectedDifficulty">
+          <mat-option value="easy">Easy</mat-option>
+          <mat-option value="medium">Medium</mat-option>
+          <mat-option value="hard">Hard</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-section">
+      <!-- disabled su button aggiunto dopo presenzatione avendo notato che mancava -->
+      <button
+        mat-raised-button
+        routerLink="/questions"
+        color="primary"
+        (click)="getCategories()"
+        [disabled]="!(idCategory && selectedDifficulty)"
+      >
+        Start
+      </button>
+    </div>
   </div>
 
-  <div class="form-section">
-    <mat-form-field>
-      <mat-label>Category</mat-label>
-      <mat-select>
-        <mat-option [value]="easy">Easy</mat-option>
-        <mat-option [value]="">Medium</mat-option>
-        <mat-option [value]="">Hard</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <div class="form-section">
-    <button mat-raised-button color="primary" (click)="getCategories()">
-      Start
-    </button>
-  </div>
+  <select *ngFor="let category of apiData; index as i" name="Category" id="">
+    <option value="">{{ category.trivia_categories[0].name }}</option>
+  </select>
 </div>
-
-<select *ngFor="let category of apiData; index as i" name="Category" id="">
-  <option value="">{{ category.trivia_categories[0].name }}</option>
-</select>

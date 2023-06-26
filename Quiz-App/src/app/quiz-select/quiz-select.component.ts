@@ -9,10 +9,16 @@ import { HttpClient } from '@angular/common/http';
 })
 export class QuizSelectComponent {
   apiData: any;
-  categories: any[] = []; // Array to store the categories
-  difficulties: any[] = []; // Array to store the categories
+  categories: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  // valori di difficulty e IdCategoy che verranno passati nel componente question con il service (sendDatas())
+  selectedDifficulty!: string;
+  idCategory!: string;
+
+  constructor(
+    private http: HttpClient,
+    private apiService: ApiServiceService
+  ) {}
 
   ngOnInit() {
     this.getCategories();
@@ -23,24 +29,20 @@ export class QuizSelectComponent {
     this.http.get<any>(urlCategories).subscribe(
       (data) => {
         this.apiData = data; // Assegna i dati ottenuti dall'API alla variabile apiData
-        this.categories = this.apiData.trivia_categories; // Assign categories to the array
+        this.categories = this.apiData.trivia_categories;
       },
       (error) => {
         console.error('Failed to get data:', error);
       }
     );
+
+    console.log(this.selectedDifficulty);
+    console.log(this.idCategory);
+    this.sendDatas();
   }
 
-  getDifficulties(): void {
-    const urlCategories = `https://opentdb.com/api_difficulty.php`;
-    this.http.get<any>(urlCategories).subscribe(
-      (data) => {
-        this.apiData = data; // Assegna i dati ottenuti dall'API alla variabile apiData
-        this.difficulties = this.apiData.trivia_difficulties; // Assign categories to the array
-      },
-      (error) => {
-        console.error('Failed to get data:', error);
-      }
-    );
+  sendDatas() {
+    this.apiService.difficultyService = this.selectedDifficulty;
+    this.apiService.idCategoryService = this.idCategory;
   }
 }

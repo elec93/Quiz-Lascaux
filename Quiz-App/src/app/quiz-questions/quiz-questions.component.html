@@ -1,1 +1,29 @@
-<p>quiz-questions works!</p>
+<div class="questions-container" *ngFor="let trivia of trivias">
+  <h3>{{ trivia.question }}</h3>
+
+  <ul class="question-ul">
+    <li *ngFor="let answer of trivia.answers">
+      <button
+        mat-stroked-button
+        color="primary"
+        [class.active]="answer.selected"
+        [class.green]="answer.correctlySelected"
+        [class.red]="answer.incorrect"
+        (click)="selectedAnswer(answer, trivia)"
+      >
+        {{ answer.text }}
+        <!-- valore true - false -- {{ answer.correct }} -->
+      </button>
+    </li>
+  </ul>
+</div>
+
+<div class="button-submit">
+  <button mat-raised-button color="primary" (click)="calculateResult()">
+    Submit
+  </button>
+  <button mat-raised-button routerLink="/quiz-select">Retry</button>
+</div>
+<div class="result" *ngIf="showResult">
+  Number of Correct Answers: {{ correctAnswers }}
+</div>
