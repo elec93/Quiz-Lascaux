@@ -19,6 +19,11 @@ export class QuizQuestionsComponent implements OnInit {
     this.getData();
   }
 
+  /*
+  I dati ottenuti dall'API con la chiamata http get vengono mappati in un array di oggetti Trivia, che rappresentano le domande del quiz insieme alle rispettive risposte.
+  Le risposte corrette vengono marcate come correct = true,
+  le risposte errate vengono marcate come correct = false.
+  */
   getData(): void {
     this.http.get<any>(this.apiService.getUrlFinale()).subscribe((data) => {
       // trivia sarà = a una copia di data (con tutti i dati dell url)
@@ -75,8 +80,9 @@ export class QuizQuestionsComponent implements OnInit {
     });
   }
 
-  //al click fa il calcolo delle risposte corrette
-
+  //Itera sulle domande e controlla se è stata selezionata una risposta corretta per ciascuna domanda.
+  //Se viene trovata una risposta selezionata e corretta, incrementa il conteggio.
+  //Il conteggio delle risposte corrette viene assegnato alla proprietà correctAnswers, e viene impostato showResult su true per mostrare i risultati del quiz.
   calculateResult(): void {
     let correctCount = 0;
     this.trivias.forEach((trivia: any) => {
@@ -110,7 +116,7 @@ export class QuizQuestionsComponent implements OnInit {
     });
   }
 
-  // answers random
+  //Posiziona in modo randomico le risposte
   shuffleAnswers(trivia: any): void {
     trivia.answers = trivia.answers.sort(() => Math.random() - 0.5);
   }

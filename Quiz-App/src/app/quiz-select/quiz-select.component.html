@@ -3,6 +3,7 @@
     <div class="form-section">
       <mat-form-field>
         <mat-label>Category</mat-label>
+        <!--collegamento tra la proprietà idCategory e il valore selezionato -->
         <mat-select [(ngModel)]="idCategory">
           <mat-option *ngFor="let category of categories" [value]="category.id">
             {{ category.name }}</mat-option
@@ -14,6 +15,7 @@
     <div class="form-section">
       <mat-form-field>
         <mat-label>Difficulty</mat-label>
+        <!--collegamento tra la proprietà selectedDifficulty e il valore selezionato -->
         <mat-select [(ngModel)]="selectedDifficulty">
           <mat-option value="easy">Easy</mat-option>
           <mat-option value="medium">Medium</mat-option>
@@ -22,21 +24,21 @@
       </mat-form-field>
     </div>
 
+    <!-- Pulsante Start -->
     <div class="form-section">
-      <!-- disabled su button aggiunto dopo presenzatione avendo notato che mancava -->
       <button
         mat-raised-button
-        routerLink="/questions"
         color="primary"
         (click)="getCategories()"
         [disabled]="!(idCategory && selectedDifficulty)"
+        routerLink="/questions"
       >
         Start
       </button>
     </div>
   </div>
 
-  <select *ngFor="let category of apiData; index as i" name="Category" id="">
+  <!-- <select *ngFor="let category of apiData; index as i" name="Category" id="">
     <option value="">{{ category.trivia_categories[0].name }}</option>
-  </select>
+  </select> -->
 </div>
